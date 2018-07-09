@@ -7,17 +7,17 @@ const Index = ({ pathname }) => {
     switch(pathname) {
         case '/':
             return <Home />
-        case '/about':
+        case './about':
             return <About />
         case '/contact':
             return <Contact />
         case '/customerservices':
             return <CustomerServices />
         case '/customersignup':
-            return <CustomerSignup />    
+            return <CustomerSignup />
         case '/customerlogin':
-            return <CustomerLogin /> 
-        default: 
+            return <CustomerLogin />
+        default:
             return <Home />
     }
 }

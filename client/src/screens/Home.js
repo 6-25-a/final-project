@@ -7,7 +7,7 @@ import Jumbotron from '../components/Jumbotron';
 class Home extends Component {
     render() {
         return(
-          <div>  
+          <div>
             <Navbar />
             <Jumbotron title="Welcome to SkillzB" subtitle="Find trusted, reliable, highly-skilled technical" />
             <div className='container'>
@@ -21,7 +21,10 @@ class Home extends Component {
                 <div className="row">
                     <div className="col-md-4">
                     <div className="card mb-4 box-shadow">
-                        <img className="card-img-top card1" data-src="./imgs/mbsml.jpeg/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Web Development and Web Design" />
+                        <img className="card-img-top card1" data-src="#" alt="" />
+                        <div className="card-img-top card1__background-image">
+                          <img className="card-background" src="./src/imgs/mbsml.jpeg" alt="Laptop with Web Dev & Des"/>
+                        </div>
                         <div className="card-body">
                         <p className="card-text">Web Developers</p>
                         <div className="d-flex justify-content-between align-items-center">
@@ -65,13 +68,11 @@ class Home extends Component {
                     </div>
                     </div>
                   </div>
-                </div> 
-            </div>    
+                </div>
+            </div>
             <Footer />
         </div>
         );
     }
 }
 export default Home
-
-
