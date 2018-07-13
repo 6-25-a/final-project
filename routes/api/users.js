@@ -6,6 +6,9 @@ const jwt = require('jsonwebtoken');
 const keys = require('../../config/config');
 const passport = require('passport');
 
+// Load Validation input
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 // User model
 const User = require('../../models/User');
 
@@ -20,14 +23,22 @@ router.get('/test', (req, res) => res.json({
 // @description     Register user
 // @access type     Public
 router.post('/register', (req, res) => {
+  const {
+    errors,
+    isValid
+  } = validateRegisterInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   User.findOne({
       email: req.body.email
     })
     .then(user => {
+
       if (user) {
-        return res.status(400).json({
-          email: 'Email already exists'
-        });
+        errors.email = 'Email already exists';
+        return res.status(400).json(errors);
       } else {
         const avatar = gravatar.url(req.body.email, {
           s: '200', // size
@@ -36,8 +47,9 @@ router.post('/register', (req, res) => {
         });
 
         const newUser = new User({
-          firstName: req.body.firstname,
-          lastName: req.body.lastname,
+          // firstName: req.body.firstname,
+          // lastName: req.body.lastname,
+          name: req.body.name,
           email: req.body.email,
           avatar,
           password: req.body.password
@@ -64,6 +76,11 @@ router.post('/register', (req, res) => {
 // @access type     Public
 
 router.post('/login', (req, res) => {
+  const {
+    errors,
+    isValid
+  } = validateLoginInput(req.body);
+
   const email = req.body.email;
   const password = req.body.password;
 
@@ -73,9 +90,8 @@ router.post('/login', (req, res) => {
   }).then(user => {
     // check for user
     if (user) {
-      return res.status(404).json({
-        email: 'User not found'
-      });
+      errors.email = 'User not found';
+      return res.status(404).json(errors);
     }
 
     // verify password
@@ -85,8 +101,9 @@ router.post('/login', (req, res) => {
         // create jwt payload
         const payload = {
           id: user.id,
-          firstname: user.firstname,
-          lastname: user.lastname,
+          name: user.name,
+          // firstname: user.firstname,
+          // lastname: user.lastname,
           avatar: user.avatar
         }
         // sign token see https://jwt.io  
@@ -102,9 +119,8 @@ router.post('/login', (req, res) => {
             });
           });
       } else {
-        return res.status(400).json({
-          password: 'Password not found'
-        });
+        errors.password = 'Password not found';
+        return res.status(400).json(errors);
       }
     })
   });
@@ -118,7 +134,8 @@ router.get('/current', passport.authenticate('jwt', {
 }), (req, res) => {
   res.json({
     id: req.user.id,
-    firstName: req.user.firstname,
+    // firstName: req.user.firstname,
+    name: req.user.name,
     email: req.uers.email
   });
 });
