@@ -1,70 +1,71 @@
-const Validator = require('validator');
-const isEmpty = require('./is-empty');
+const Validator = require("validator");
+const isEmpty = require("./is-empty");
 
 module.exports = function validateRegisterInput(data) {
   let errors = {};
 
-  data.name = !isEmpty(data.name) ? data.name : '';
-  data.email = !isEmpty(data.email) ? data.email : '';
-  data.password = !isEmpty(data.password) ? data.password : '';
-  data.password2 = !isEmpty(data.password2) ? data.password2 : '';
-
-  if (!Validator.isLength(data.name, {
+  data.name = !isEmpty(data.name) ? data.name : "";
+  data.email = !isEmpty(data.email) ? data.email : "";
+  data.password = !isEmpty(data.password) ? data.password : "";
+  data.password2 = !isEmpty(data.password2) ? data.password2 : "";
+  // data.cellphone = !isEmpty(data.cellphone) ? data.cellphone : '';
+  if (
+    !Validator.isLength(data.name, {
       min: 2,
       max: 30
-    })) {
-    errors.name = 'Name must be between 2 and 30 characters';
+    })
+  ) {
+    errors.name = "Name must be between 2 and 30 characters";
   }
 
   if (Validator.isEmpty(data.name)) {
-    errors.name = 'Name is required';
+    errors.name = "Name is required";
   }
 
   if (Validator.isEmpty(data.email)) {
-    errors.email = 'Email is required';
+    errors.email = "Email is required";
   }
 
   if (!Validator.isEmail(data.email)) {
-    errors.email = 'Email is invalid';
+    errors.email = "Email is invalid";
   }
 
   if (Validator.isEmpty(data.password)) {
-    errors.password = 'Password is required';
+    errors.password = "Password is required";
   }
 
-  if (!Validator.isLength(data.password, {
+  if (
+    !Validator.isLength(data.password, {
       min: 6,
       max: 30
-    })) {
-    errors.password = 'Password must be between 6 and 30 characters';
+    })
+  ) {
+    errors.password = "Password must be between 6 and 30 characters";
   }
 
   if (Validator.isEmpty(data.password2)) {
-    errors.password2 = 'Please confirm password';
+    errors.password2 = "Please confirm password";
   }
 
   if (!Validator.equals(data.password, data.password2)) {
-    errors.password2 = 'Passwords must be the same';
+    errors.password2 = "Passwords must be the same";
   }
+
+  // if (Validator.isEmpty(data.cellphone, {
+  //   min: 10,
+  //   max: 16
+  // })) {
+  //   errors.cellphone = 'cellphone is required';
+  // }
+
+  // if (!Validator.isLength(data.cellphone)) {
+  //   errors.cellphone = 'cellphone should be between 10 and 16 digits';
+  // }
 
   return {
     errors,
     isValid: isEmpty(errors)
   };
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //https://github.com/chriso/validator.js/

@@ -1,22 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { Home, About, Contact, CustomerServices, CustomerLogin, CustomerSignup } from './screens';
+import Signup from './components/auth/Register';
+import Home from './screens/Home';
+
 
 const Index = ({ pathname }) => {
     switch(pathname) {
         case '/':
-            return <Home />
-        case './about':
-            return <About />
-        case '/contact':
-            return <Contact />
-        case '/customerservices':
-            return <CustomerServices />
-        case '/customersignup':
-            return <CustomerSignup />
-        case '/customerlogin':
-            return <CustomerLogin />
+            return <Home /> 
+        case '/register':
+            return <Signup />       
         default:
             return <Home />
     }
