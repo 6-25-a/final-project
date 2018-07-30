@@ -1,48 +1,48 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+// const Schema = mongoose.Schema;
+const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
 
-// User Schema
-const UserSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  // firstName: {
-  //   type: String,
-  //   required: true
-  // },
-  // lastName: {
-  //   type: String,
-  //   required: true
-  // },
+const UserSchema = new mongoose.Schema({
   email: {
     type: String,
-    required: true
+    required: true,
+    lowercase: true,
+    unique: true
   },
-  password: {
+  passwordHash: {
     type: String,
     required: true
   },
-  avatar: {
+  salt: {
     type: String,
-  },
-  // isRemoved: {
-  //     type: Boolean,
-  //     default: false
-  // },
-  date: {
-    type: Date,
-    default: Date.now
+    required: true
   }
 });
 
-UserSchema.methods.generateHash = function (password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
-}
+UserSchema.method("setPassword", function(password) {
+  this.salt = crypto.randomBytes(16).toString("hex");
+  this.passwordHash = crypto
+    .pbkdf2Sync(password, this.salt, 1000, 64, "sha1")
+    .toString("hex");
+});
 
-UserSchema.methods.validPassword = function (password) {
-  return bcrypt.compareSync(password, this.password);
-}
+UserSchema.method("validatePassword", function(password) {
+  let hash = crypto
+    .pbkdf2Sync(password, this.salt, 1000, 64, "sha1")
+    .toString("hex");
+  return hash === this.passwordHash;
+});
 
-module.exports = mongoose.model('User', UserSchema);
+UserSchema.method("generateJWT", function() {
+  return jwt.sign(
+    {
+      id: this._id,
+      email: this.email
+    },
+    "SecretKey"
+  );
+});
+
+const User = mongoose.model("User", UserSchema);
+module.exports = User;

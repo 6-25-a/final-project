@@ -1,27 +1,39 @@
-
-
-.jumbotron, .jumbotron-fluid {
-    background-image: url(../imgs/pexels-photo-317356.jpeg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    padding-top: var(--jumbotron-padding-y);
-    padding-bottom: var(--jumbotron-padding-y);
+.jumbotron,
+.jumbotron-fluid {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
     margin-bottom: 0;
+    background-color: #ccc;
+    background-image: url(../imgs/pexels-photo-317356.jpeg);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 100% auto;
+    /* background-size: cover; */
     color: rgb(0, 0, 27);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: bold;
 }
 
-.overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 1;
-    }
+.jumbotron-heading {
+    font-weight: 400;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.jumbotron .container {
+    max-width: 40rem;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    color: rgb(61, 10, 10);
+}
+
+.jumbotron h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.jumbotron p {
+    color: rgb(0, 0, 27);
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
 
 .lead {
     font-family: sans-serif;
@@ -37,7 +49,19 @@ div.container {
     margin-right: 2em;
 } */
 
-img.card-img-top {
+/* img.card-img-top {
     background-size: cover;
-}
+} */
 
+/* .jumbotron,
+.jumbotron-fluid {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    padding-top: var(--jumbotron-padding-y);
+    padding-bottom: var(--jumbotron-padding-y);
+    margin-bottom: 0;
+    color: rgb(0, 0, 27);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+} */
