@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import Navbar from '../components/layouts/Navbar.js';
-import Footer from '../components/layouts/Footer.js';
-import Jumbotron from '../components/Jumbotron';
+import React from 'react';
+// import Navbar from '../components/layouts/Navbar';
+// import Footer from '../components/layouts/Footer';
+// import Jumbotron from '../components/Jumbotron';
 
-const About = () => <Navbar title="About" />;
+// const About = () => <Navbar title="About" />;
 
-class About extends Component {
+class About extends React.Component {
     render() {
         return(
           <div>

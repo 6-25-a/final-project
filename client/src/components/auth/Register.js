@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+// import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 
 class Signup extends React.Component {

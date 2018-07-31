@@ -8,9 +8,9 @@ const Signup = ({title}) => {
   <div>
     <h1>{title}</h1>
     <a href="/"> Home </a>
-    <a href="/pages/about"> About </a>
-    <a href="/pages/providerportal"> Provider Portal </a>
-    <a href="/pages/customerportal"> Customer Portal </a>
+    <a href="/screens/about"> About </a>
+    <a href="/screens/providerportal"> Provider Portal </a>
+    <a href="/screens/customerportal"> Customer Portal </a>
     </div>
 
 }
