@@ -17,7 +17,7 @@ mongoose.connect('mongodb://Jonesdl_38:98TestMe25@ds231951.mlab.com:31951/6-25-a
 );
 
 // models
-const User = require('./models/user');
+const User = require('./models/User');
 
 // routes
 const users = require('./routes/api/users');
