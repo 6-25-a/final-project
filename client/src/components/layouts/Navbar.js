@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Navbar  =  ({title}) => (
   <div>
@@ -7,7 +7,7 @@ const Navbar  =  ({title}) => (
     <a href='/about'>About | </a>
     <a href='/register'>Register | </a>
     <a href='/login'>Login | </a>
-    <a href='/logout'>Logout  </a>
+    {/* <a href='/logout'>Logout  </a> */}
   </div>
 )
 
